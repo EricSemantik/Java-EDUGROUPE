@@ -17,7 +17,7 @@ public class SujetTest {
 		
 		sujetRepo.update(javaAvancee);
 		
-		
+		sujetRepo.deleteById(javaAvancee.getCode());
 
 	}
 
