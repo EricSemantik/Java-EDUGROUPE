@@ -1,9 +1,19 @@
 package formation.factory.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Sujet {
+	@XmlAttribute(name = "code")
 	private String code;
+	@XmlElement
 	private String nom;
+	@XmlElement(name = "pre-requis")
 	private String preRequis;
+	@XmlAttribute
 	private int duree;
 
 	public Sujet() {
@@ -49,5 +59,6 @@ public class Sujet {
 	public void setDuree(int duree) {
 		this.duree = duree;
 	}
+
 
 }
