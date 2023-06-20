@@ -48,6 +48,10 @@ public class BidonTest {
 		products.stream().map(s -> Produit.parse(s)).filter(p -> p.getTaux() == 5.5).filter(p -> p.getPrixHT() < 100)
 				.forEach(System.out::println);
 
+		
+		FactorySingleton singleton1 = FactorySingleton.getInstance();
+		FactorySingleton singleton2 = FactorySingleton.getInstance();
+		
 	}
 
 }
