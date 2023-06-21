@@ -2,8 +2,19 @@ package formation.factory.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@DiscriminatorValue("participant")
 public class Participant extends Personne {
+	@Temporal(TemporalType.DATE)
+	@Column(name="birthdate")
 	private Date dtNaissance;
+	@Column(name="rating")
 	private int note;
 
 	public Participant() {

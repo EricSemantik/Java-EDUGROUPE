@@ -1,5 +1,10 @@
 package formation.factory.model;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("formateur")
 public class Formateur extends Personne {
 	private int experience;
 	private boolean referent;

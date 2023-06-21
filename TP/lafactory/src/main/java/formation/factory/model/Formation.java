@@ -4,11 +4,30 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name="training")
 public class Formation {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Temporal(TemporalType.DATE)
+	@Column(name="start_date")
 	private Date dtDebut;
+	@Transient
 	private Sujet sujet;
+	@Transient
 	private Formateur formateur;
+	@Transient
 	private List<Participant> participants = new ArrayList<>();
 
 	public Formation() {
