@@ -18,6 +18,8 @@ public class Salle {
 	private String nom;
 	@Transient
 	private Adresse adresse;
+	@Transient
+	private Formation formation;
 
 	public Salle() {
 		super();
@@ -53,4 +55,13 @@ public class Salle {
 		this.adresse = adresse;
 	}
 
+	public Formation getFormation() {
+		return formation;
+	}
+
+	public void setFormation(Formation formation) {
+		this.formation = formation;
+	}
+
+	
 }

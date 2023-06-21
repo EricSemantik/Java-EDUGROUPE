@@ -1,13 +1,19 @@
 package formation.factory.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue("formateur")
 public class Formateur extends Personne {
 	private int experience;
 	private boolean referent;
+	@Transient
+	private List<Formation> formations = new ArrayList<>();
 
 	public Formateur() {
 		super();
@@ -37,6 +43,14 @@ public class Formateur extends Personne {
 
 	public void setReferent(boolean referent) {
 		this.referent = referent;
+	}
+
+	public List<Formation> getFormations() {
+		return formations;
+	}
+
+	public void setFormations(List<Formation> formations) {
+		this.formations = formations;
 	}
 
 }

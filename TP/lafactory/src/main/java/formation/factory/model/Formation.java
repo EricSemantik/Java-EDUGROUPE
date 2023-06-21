@@ -15,13 +15,13 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="training")
+@Table(name = "training")
 public class Formation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Temporal(TemporalType.DATE)
-	@Column(name="start_date")
+	@Column(name = "start_date")
 	private Date dtDebut;
 	@Transient
 	private Sujet sujet;
@@ -29,6 +29,8 @@ public class Formation {
 	private Formateur formateur;
 	@Transient
 	private List<Participant> participants = new ArrayList<>();
+	@Transient
+	private Salle salle;
 
 	public Formation() {
 		super();
@@ -81,6 +83,14 @@ public class Formation {
 
 	public void setParticipants(List<Participant> participants) {
 		this.participants = participants;
+	}
+
+	public Salle getSalle() {
+		return salle;
+	}
+
+	public void setSalle(Salle salle) {
+		this.salle = salle;
 	}
 
 }

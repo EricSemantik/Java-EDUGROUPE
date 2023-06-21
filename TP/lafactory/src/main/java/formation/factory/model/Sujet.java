@@ -1,9 +1,13 @@
 package formation.factory.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -25,6 +29,8 @@ public class Sujet {
 	@XmlAttribute
 	@Column(name="duration")
 	private int duree;
+	@Transient
+	private List<Formation> formations = new ArrayList<>();
 
 	public Sujet() {
 		super();
@@ -70,5 +76,14 @@ public class Sujet {
 		this.duree = duree;
 	}
 
+	public List<Formation> getFormations() {
+		return formations;
+	}
+
+	public void setFormations(List<Formation> formations) {
+		this.formations = formations;
+	}
+
+	
 
 }

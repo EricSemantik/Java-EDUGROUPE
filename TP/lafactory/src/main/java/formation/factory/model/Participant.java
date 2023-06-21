@@ -1,21 +1,26 @@
 package formation.factory.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue("participant")
 public class Participant extends Personne {
 	@Temporal(TemporalType.DATE)
-	@Column(name="birthdate")
+	@Column(name = "birthdate")
 	private Date dtNaissance;
-	@Column(name="rating")
+	@Column(name = "rating")
 	private int note;
+	@Transient
+	private List<Formation> formations = new ArrayList<>();
 
 	public Participant() {
 		super();
@@ -45,6 +50,14 @@ public class Participant extends Personne {
 
 	public void setNote(int note) {
 		this.note = note;
+	}
+
+	public List<Formation> getFormations() {
+		return formations;
+	}
+
+	public void setFormations(List<Formation> formations) {
+		this.formations = formations;
 	}
 
 }
