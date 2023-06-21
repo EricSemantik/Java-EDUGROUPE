@@ -1,8 +1,10 @@
 package formation.factory.model;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.Version;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -22,6 +24,8 @@ public abstract class Personne {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Version
+	private int version;
 	@Column(name = "civility", length = 5)
 	@Enumerated(EnumType.STRING)
 	private Civilite civilite;
@@ -29,7 +33,8 @@ public abstract class Personne {
 	private String nom;
 	@Column(name = "first_name", length = 100)
 	private String prenom;
-	@Transient
+	@Embedded
+	@AttributeOverride(name = "rue", column = @Column(name = "per_street"))
 	private Adresse adresse;
 
 	public Personne() {
@@ -54,6 +59,14 @@ public abstract class Personne {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public Civilite getCivilite() {

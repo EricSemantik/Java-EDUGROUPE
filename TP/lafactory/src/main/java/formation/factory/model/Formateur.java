@@ -5,14 +5,14 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("formateur")
 public class Formateur extends Personne {
 	private int experience;
 	private boolean referent;
-	@Transient
+	@OneToMany(mappedBy = "formateur") // par défaut Fetch.LAZY
 	private List<Formation> formations = new ArrayList<>();
 
 	public Formateur() {

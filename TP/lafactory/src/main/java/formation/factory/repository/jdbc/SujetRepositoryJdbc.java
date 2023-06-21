@@ -84,7 +84,7 @@ public class SujetRepositoryJdbc implements ISujetRepository {
 	}
 
 	@Override
-	public void update(Sujet obj) {
+	public Sujet update(Sujet obj) {
 		try (Connection conn = FactorySingleton.getInstance().getConnection();
 				PreparedStatement ps = conn
 						.prepareStatement("UPDATE sujet SET nom = ?, pre_requis = ?, duree = ? WHERE code = ?");) {
@@ -99,6 +99,8 @@ public class SujetRepositoryJdbc implements ISujetRepository {
 		} catch (SQLException e) {
 			throw new FactoryException("Connexion error", e);
 		}
+		
+		return obj;
 	}
 
 	@Override

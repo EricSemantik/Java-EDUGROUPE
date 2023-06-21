@@ -6,13 +6,19 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "training")
@@ -20,16 +26,22 @@ public class Formation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Version
+	private int version;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "start_date")
 	private Date dtDebut;
-	@Transient
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "subject_code")
 	private Sujet sujet;
-	@Transient
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "trainer_id")
 	private Formateur formateur;
-	@Transient
+	@ManyToMany
+	@JoinTable(name = "training_trainee", joinColumns = @JoinColumn(name = "training_id"), inverseJoinColumns = @JoinColumn(name = "trainee_id"))
 	private List<Participant> participants = new ArrayList<>();
-	@Transient
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "room_id")
 	private Salle salle;
 
 	public Formation() {
@@ -51,6 +63,14 @@ public class Formation {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public Date getDtDebut() {

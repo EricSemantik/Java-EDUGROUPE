@@ -54,7 +54,7 @@ public class SujetRepositoryCsv implements ISujetRepository {
 	}
 
 	@Override
-	public void update(Sujet obj) {
+	public Sujet update(Sujet obj) {
 		List<Sujet> sujets = readAll();
 
 		boolean find = false;
@@ -71,6 +71,8 @@ public class SujetRepositoryCsv implements ISujetRepository {
 		}
 
 		writeAll(sujets);
+		
+		return obj;
 	}
 
 	@Override

@@ -1,12 +1,15 @@
 package formation.factory.model;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "room")
@@ -14,15 +17,22 @@ public class Salle {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Version
+	private int version;
 	@Column(name = "name", length = 100)
 	private String nom;
-	@Transient
+	@Embedded
 	private Adresse adresse;
-	@Transient
+	@OneToOne(mappedBy = "salle", fetch = FetchType.LAZY)
 	private Formation formation;
 
 	public Salle() {
 		super();
+	}
+	
+	public Salle(String nom) {
+		super();
+		this.nom = nom;
 	}
 
 	public Salle(Long id, String nom) {
@@ -37,6 +47,14 @@ public class Salle {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public String getNom() {
@@ -63,5 +81,4 @@ public class Salle {
 		this.formation = formation;
 	}
 
-	
 }

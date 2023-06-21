@@ -111,7 +111,7 @@ public class SalleRepositoryJdbc implements ISalleRepository {
 	}
 
 	@Override
-	public void update(Salle obj) {
+	public Salle update(Salle obj) {
 		try (Connection conn = FactorySingleton.getInstance().getConnection();
 				PreparedStatement ps = conn.prepareStatement(
 						"UPDATE salle SET nom = ?, rue = ?, complement = ?, code_postal = ?, ville = ? WHERE id = ?");) {
@@ -137,6 +137,8 @@ public class SalleRepositoryJdbc implements ISalleRepository {
 		} catch (SQLException e) {
 			throw new FactoryException("Connexion error", e);
 		}
+		
+		return obj;
 	}
 
 	@Override

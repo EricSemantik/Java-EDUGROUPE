@@ -6,6 +6,6 @@ public interface IRepository<T,PK> {
 	List<T> findAll();
 	T findById(PK id);
 	void create(T obj);
-	void update(T obj);
+	T update(T obj);
 	void deleteById(PK id);
 }

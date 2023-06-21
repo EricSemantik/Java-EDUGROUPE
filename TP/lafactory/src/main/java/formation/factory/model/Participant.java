@@ -7,9 +7,9 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue("participant")
@@ -19,7 +19,7 @@ public class Participant extends Personne {
 	private Date dtNaissance;
 	@Column(name = "rating")
 	private int note;
-	@Transient
+	@ManyToMany(mappedBy = "participants")
 	private List<Formation> formations = new ArrayList<>();
 
 	public Participant() {

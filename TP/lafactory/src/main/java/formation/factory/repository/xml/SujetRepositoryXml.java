@@ -5,10 +5,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -76,7 +74,7 @@ public class SujetRepositoryXml implements ISujetRepository {
 	}
 
 	@Override
-	public void update(Sujet obj) {
+	public Sujet update(Sujet obj) {
 		List<Sujet> sujets = readAll();
 
 		boolean find = false;
@@ -93,6 +91,8 @@ public class SujetRepositoryXml implements ISujetRepository {
 		}
 
 		writeAll(sujets);
+
+		return obj;
 	}
 
 	@Override
