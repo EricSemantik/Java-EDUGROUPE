@@ -71,16 +71,16 @@ public class JpaTest {
 //		javaADV20230619 = formationRepo.update(javaADV20230619);
 		
 		Participation javaADV20230619David = new Participation(javaADV20230619, david);
-		participationRepository.create(javaADV20230619David);
+		participationRepository.update(javaADV20230619David);
 		
-		Participation javaADV20230619DavidBis = new Participation(javaADV20230619, david);
-		participationRepository.create(javaADV20230619DavidBis);
+//		Participation javaADV20230619DavidBis = new Participation(javaADV20230619, david);
+//		participationRepository.create(javaADV20230619DavidBis);
 		
 		Participation javaADV20230619Charlotte = new Participation(javaADV20230619, charlotte);
-		participationRepository.create(javaADV20230619Charlotte);
+		participationRepository.update(javaADV20230619Charlotte);
 		
 		Participation javaADV20230619Camille = new Participation(javaADV20230619, camille);
-		participationRepository.create(javaADV20230619Camille);
+		participationRepository.update(javaADV20230619Camille);
 	}
 
 }

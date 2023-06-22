@@ -21,7 +21,7 @@ public class Participant extends Personne {
 	private int note;
 //	@ManyToMany(mappedBy = "participants")
 //	private List<Formation> formations = new ArrayList<>();
-	@OneToMany(mappedBy = "participant")
+	@OneToMany(mappedBy = "id.participant")
 	private List<Participation> participations = new ArrayList<>();
 
 	public Participant() {

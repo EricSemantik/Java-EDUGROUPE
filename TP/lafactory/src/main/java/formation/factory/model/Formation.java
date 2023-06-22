@@ -42,7 +42,7 @@ public class Formation {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "room_id")
 	private Salle salle;
-	@OneToMany(mappedBy = "formation")
+	@OneToMany(mappedBy = "id.formation")
 	private List<Participation> participations = new ArrayList<>();
 
 	public Formation() {
