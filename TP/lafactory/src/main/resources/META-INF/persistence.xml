@@ -13,7 +13,7 @@
 			<property name="javax.persistence.jdbc.password" value="admin" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect" />
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
 		</properties>
 	</persistence-unit>
 </persistence>

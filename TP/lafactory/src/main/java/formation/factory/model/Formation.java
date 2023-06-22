@@ -47,14 +47,18 @@ public class Formation {
 	public Formation() {
 		super();
 	}
+	
+	public Formation(Date dtDebut, Sujet sujet, Formateur formateur, Salle salle) {
+		this(null, dtDebut, sujet, formateur, salle);
+	}
 
-	public Formation(Long id, Date dtDebut, Sujet sujet, Formateur formateur, List<Participant> participants) {
+	public Formation(Long id, Date dtDebut, Sujet sujet, Formateur formateur, Salle salle) {
 		super();
 		this.id = id;
 		this.dtDebut = dtDebut;
 		this.sujet = sujet;
 		this.formateur = formateur;
-		this.participants = participants;
+		this.salle = salle;
 	}
 
 	public Long getId() {

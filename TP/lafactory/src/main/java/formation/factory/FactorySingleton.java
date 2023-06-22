@@ -8,8 +8,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import formation.factory.exception.FactoryException;
+import formation.factory.repository.IFormationRepository;
+import formation.factory.repository.IPersonneRepository;
 import formation.factory.repository.ISalleRepository;
+import formation.factory.repository.ISujetRepository;
+import formation.factory.repository.jpa.FormationRepositoryJpa;
+import formation.factory.repository.jpa.PersonneRepositoryJpa;
 import formation.factory.repository.jpa.SalleRepositoryJpa;
+import formation.factory.repository.jpa.SujetRepositoryJpa;
 
 public class FactorySingleton {
 	private static FactorySingleton instance = null;
@@ -18,7 +24,10 @@ public class FactorySingleton {
 
 	private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("factory-unit");
 
+	private final IFormationRepository formationRepository = new FormationRepositoryJpa();
+	private final IPersonneRepository personneRepository = new PersonneRepositoryJpa();
 	private final ISalleRepository salleRepository = new SalleRepositoryJpa();
+	private final ISujetRepository sujetRepository = new SujetRepositoryJpa();
 
 	private FactorySingleton() {
 		try {
@@ -44,8 +53,20 @@ public class FactorySingleton {
 		return emf;
 	}
 
+	public IFormationRepository getFormationRepository() {
+		return formationRepository;
+	}
+
+	public IPersonneRepository getPersonneRepository() {
+		return personneRepository;
+	}
+
 	public ISalleRepository getSalleRepository() {
 		return salleRepository;
+	}
+
+	public ISujetRepository getSujetRepository() {
+		return sujetRepository;
 	}
 
 }
