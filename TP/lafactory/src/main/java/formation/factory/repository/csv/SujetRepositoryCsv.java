@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import formation.factory.exception.FactoryException;
@@ -140,6 +141,18 @@ public class SujetRepositoryCsv implements ISujetRepository {
 
 	@Override
 	public Sujet findByIdWithFormations(String code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Sujet> findAllByPreRequis(String prequis) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Sujet> findAllByDateDeFormation(Date dtFormation) {
 		// TODO Auto-generated method stub
 		return null;
 	}

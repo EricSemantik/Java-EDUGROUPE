@@ -11,4 +11,8 @@ public interface ISujetRepository extends IRepository<Sujet, String>{
 	List<Sujet> findAllByPreRequis(String prequis); // TEST UNIT
 	
 	List<Sujet> findAllByDateDeFormation(Date dtFormation);
+	
+	// nombre de formation par sujet => renvoie l'objet Sujet et le nombre de formation sur ce sujet
+	// faire le test unitaire
+	List<Object[]> findAllSujetAndCountFormation();  
 }

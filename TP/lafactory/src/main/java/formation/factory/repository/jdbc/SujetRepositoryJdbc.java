@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import formation.factory.FactorySingleton;
@@ -119,6 +120,18 @@ public class SujetRepositoryJdbc implements ISujetRepository {
 
 	@Override
 	public Sujet findByIdWithFormations(String code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Sujet> findAllByPreRequis(String prequis) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Sujet> findAllByDateDeFormation(Date dtFormation) {
 		// TODO Auto-generated method stub
 		return null;
 	}

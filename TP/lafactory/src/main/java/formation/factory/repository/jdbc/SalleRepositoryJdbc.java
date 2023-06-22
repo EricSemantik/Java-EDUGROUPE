@@ -155,4 +155,16 @@ public class SalleRepositoryJdbc implements ISalleRepository {
 		}
 	}
 
+	@Override
+	public List<Salle> findAllByVille(String ville) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Salle> findAllWithFormations() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

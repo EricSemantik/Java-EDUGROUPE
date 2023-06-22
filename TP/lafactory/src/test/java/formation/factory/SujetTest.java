@@ -3,6 +3,7 @@ package formation.factory;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -62,6 +63,25 @@ public class SujetTest {
 		assertEquals(2, javaBaseFind.getFormations().size());
 		
 		
+	}
+	
+	@Test
+	public void testFindAllByPreRequis() {
+		// ARRANGE
+		Sujet javaAdv = new Sujet("JAVA_ADV", "Java avancée", "JAVA_BASE", 4);
+		sujetRepo.create(javaAdv);
+		
+		Sujet springCore = new Sujet("SPRING_CORE", "Spring core", "JAVA_BASE", 4);
+		sujetRepo.create(springCore);
+	
+		Sujet javaBase = new Sujet("JAVA_BASE", "Java base", "ALGO", 3);
+		sujetRepo.create(javaBase);
+		
+		// ACT
+		List<Sujet> sujets = sujetRepo.findAllByPreRequis("JAVA_BASE");
+		
+		// ASSERT
+		assertEquals(2, sujets.size());
 	}
 	
 

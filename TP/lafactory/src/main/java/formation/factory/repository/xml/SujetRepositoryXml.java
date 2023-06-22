@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -146,6 +147,18 @@ public class SujetRepositoryXml implements ISujetRepository {
 
 	@Override
 	public Sujet findByIdWithFormations(String code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Sujet> findAllByPreRequis(String prequis) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Sujet> findAllByDateDeFormation(Date dtFormation) {
 		// TODO Auto-generated method stub
 		return null;
 	}

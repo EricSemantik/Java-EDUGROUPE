@@ -16,7 +16,7 @@ public class SalleRepositoryJpa implements ISalleRepository {
 	@Override
 	public List<Salle> findAll() {
 		List<Salle> salles = new ArrayList<>();
-		
+
 		EntityManager em = null;
 		try {
 			em = FactorySingleton.getInstance().getEmf().createEntityManager();
@@ -24,16 +24,16 @@ public class SalleRepositoryJpa implements ISalleRepository {
 
 			TypedQuery<Salle> query = em.createQuery("from Salle", Salle.class);
 			salles = query.getResultList();
-			
+
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			if(em.getTransaction() != null && em.getTransaction().isActive()) {
+			if (em.getTransaction() != null && em.getTransaction().isActive()) {
 				em.getTransaction().rollback();
 			}
-			
+
 			throw new FactoryException(e);
 		} finally {
-			if(em != null) { 
+			if (em != null) {
 				em.close();
 			}
 		}
@@ -44,28 +44,28 @@ public class SalleRepositoryJpa implements ISalleRepository {
 	@Override
 	public Salle findById(Long id) {
 		Salle salle = null;
-		
+
 		EntityManager em = null;
 		try {
 			em = FactorySingleton.getInstance().getEmf().createEntityManager();
 			em.getTransaction().begin();
 
 			salle = em.find(Salle.class, id);
-			
+
 //			TypedQuery<Salle> query = em.createQuery("select s from Salle s where s.id = :id", Salle.class);
 //			query.setParameter("id", id);
 //			
 //			salle = query.getSingleResult();
-			
+
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			if(em.getTransaction() != null && em.getTransaction().isActive()) {
+			if (em.getTransaction() != null && em.getTransaction().isActive()) {
 				em.getTransaction().rollback();
 			}
-			
+
 			throw new FactoryException(e);
 		} finally {
-			if(em != null) { 
+			if (em != null) {
 				em.close();
 			}
 		}
@@ -80,16 +80,16 @@ public class SalleRepositoryJpa implements ISalleRepository {
 			em.getTransaction().begin();
 
 			em.persist(obj);
-			
+
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			if(em.getTransaction() != null && em.getTransaction().isActive()) {
+			if (em.getTransaction() != null && em.getTransaction().isActive()) {
 				em.getTransaction().rollback();
 			}
-			
+
 			throw new FactoryException(e);
 		} finally {
-			if(em != null) { 
+			if (em != null) {
 				em.close();
 			}
 		}
@@ -103,20 +103,20 @@ public class SalleRepositoryJpa implements ISalleRepository {
 			em.getTransaction().begin();
 
 			obj = em.merge(obj);
-			
+
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			if(em.getTransaction() != null && em.getTransaction().isActive()) {
+			if (em.getTransaction() != null && em.getTransaction().isActive()) {
 				em.getTransaction().rollback();
 			}
-			
+
 			throw new FactoryException(e);
 		} finally {
-			if(em != null) { 
+			if (em != null) {
 				em.close();
 			}
 		}
-		
+
 		return obj;
 	}
 
@@ -129,24 +129,83 @@ public class SalleRepositoryJpa implements ISalleRepository {
 
 //			Salle salle = em.find(Salle.class, id);
 //			em.remove(salle);
-			
+
 			TypedQuery<Salle> query = em.createQuery("delete from Salle s where s.id = :id", Salle.class);
 			query.setParameter("id", id);
-			
+
 			query.executeUpdate();
-			
+
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			if(em.getTransaction() != null && em.getTransaction().isActive()) {
+			if (em.getTransaction() != null && em.getTransaction().isActive()) {
 				em.getTransaction().rollback();
 			}
-			
+
 			throw new FactoryException(e);
 		} finally {
-			if(em != null) { 
+			if (em != null) {
 				em.close();
 			}
 		}
+	}
+
+	@Override
+	public List<Salle> findAllByVille(String ville) {
+		List<Salle> salles = new ArrayList<>();
+
+		EntityManager em = null;
+		try {
+			em = FactorySingleton.getInstance().getEmf().createEntityManager();
+			em.getTransaction().begin();
+
+			TypedQuery<Salle> query = em.createQuery("from Salle s where s.adresse.ville = :ville", Salle.class);
+			query.setParameter("ville", ville);
+			
+			salles = query.getResultList();
+
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			if (em.getTransaction() != null && em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
+
+			throw new FactoryException(e);
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return salles;
+	}
+
+	@Override
+	public List<Salle> findAllWithFormations() {
+		List<Salle> salles = new ArrayList<>();
+
+		EntityManager em = null;
+		try {
+			em = FactorySingleton.getInstance().getEmf().createEntityManager();
+			em.getTransaction().begin();
+
+			TypedQuery<Salle> query = em.createQuery("select distinct s from Salle s join fetch s.formations", Salle.class);
+			
+			salles = query.getResultList();
+
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			if (em.getTransaction() != null && em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
+
+			throw new FactoryException(e);
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return salles;
 	}
 
 }
