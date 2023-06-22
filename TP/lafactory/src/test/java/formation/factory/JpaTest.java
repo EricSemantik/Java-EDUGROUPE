@@ -8,9 +8,11 @@ import formation.factory.model.Civilite;
 import formation.factory.model.Formateur;
 import formation.factory.model.Formation;
 import formation.factory.model.Participant;
+import formation.factory.model.Participation;
 import formation.factory.model.Salle;
 import formation.factory.model.Sujet;
 import formation.factory.repository.IFormationRepository;
+import formation.factory.repository.IParticipationRepository;
 import formation.factory.repository.IPersonneRepository;
 import formation.factory.repository.ISalleRepository;
 import formation.factory.repository.ISujetRepository;
@@ -22,6 +24,7 @@ public class JpaTest {
 		
 		IFormationRepository formationRepo = FactorySingleton.getInstance().getFormationRepository();
 		IPersonneRepository personneRepo = FactorySingleton.getInstance().getPersonneRepository();
+		IParticipationRepository participationRepository = FactorySingleton.getInstance().getParticipationRepository();
 		ISalleRepository salleRepo = FactorySingleton.getInstance().getSalleRepository();
 		ISujetRepository sujetRepo = FactorySingleton.getInstance().getSujetRepository();
 		
@@ -57,16 +60,27 @@ public class JpaTest {
 		
 		formationRepo.create(javaADV20230619);
 		
-		javaADV20230619.getParticipants().add(david);
-		javaADV20230619.getParticipants().add(camille);
+//		javaADV20230619.getParticipants().add(david);
+//		javaADV20230619.getParticipants().add(camille);
+//		
+//		
+//		javaADV20230619 = formationRepo.update(javaADV20230619);
+//		
+//		javaADV20230619.getParticipants().add(charlotte);
+//		
+//		javaADV20230619 = formationRepo.update(javaADV20230619);
 		
+		Participation javaADV20230619David = new Participation(javaADV20230619, david);
+		participationRepository.create(javaADV20230619David);
 		
-		javaADV20230619 = formationRepo.update(javaADV20230619);
+		Participation javaADV20230619DavidBis = new Participation(javaADV20230619, david);
+		participationRepository.create(javaADV20230619DavidBis);
 		
-		javaADV20230619.getParticipants().add(charlotte);
+		Participation javaADV20230619Charlotte = new Participation(javaADV20230619, charlotte);
+		participationRepository.create(javaADV20230619Charlotte);
 		
-		javaADV20230619 = formationRepo.update(javaADV20230619);
-		
+		Participation javaADV20230619Camille = new Participation(javaADV20230619, camille);
+		participationRepository.create(javaADV20230619Camille);
 	}
 
 }

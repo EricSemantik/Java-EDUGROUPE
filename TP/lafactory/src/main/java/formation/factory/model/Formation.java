@@ -11,9 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -37,17 +36,19 @@ public class Formation {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "trainer_id")
 	private Formateur formateur;
-	@ManyToMany
-	@JoinTable(name = "training_trainee", joinColumns = @JoinColumn(name = "training_id"), inverseJoinColumns = @JoinColumn(name = "trainee_id"))
-	private List<Participant> participants = new ArrayList<>();
+//	@ManyToMany
+//	@JoinTable(name = "training_trainee", joinColumns = @JoinColumn(name = "training_id"), inverseJoinColumns = @JoinColumn(name = "trainee_id"))
+//	private List<Participant> participants = new ArrayList<>();
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "room_id")
 	private Salle salle;
+	@OneToMany(mappedBy = "formation")
+	private List<Participation> participations = new ArrayList<>();
 
 	public Formation() {
 		super();
 	}
-	
+
 	public Formation(Date dtDebut, Sujet sujet, Formateur formateur, Salle salle) {
 		this(null, dtDebut, sujet, formateur, salle);
 	}
@@ -101,12 +102,20 @@ public class Formation {
 		this.formateur = formateur;
 	}
 
-	public List<Participant> getParticipants() {
-		return participants;
+//	public List<Participant> getParticipants() {
+//		return participants;
+//	}
+//
+//	public void setParticipants(List<Participant> participants) {
+//		this.participants = participants;
+//	}
+
+	public List<Participation> getParticipations() {
+		return participations;
 	}
 
-	public void setParticipants(List<Participant> participants) {
-		this.participants = participants;
+	public void setParticipations(List<Participation> participations) {
+		this.participations = participations;
 	}
 
 	public Salle getSalle() {

@@ -9,10 +9,12 @@ import javax.persistence.Persistence;
 
 import formation.factory.exception.FactoryException;
 import formation.factory.repository.IFormationRepository;
+import formation.factory.repository.IParticipationRepository;
 import formation.factory.repository.IPersonneRepository;
 import formation.factory.repository.ISalleRepository;
 import formation.factory.repository.ISujetRepository;
 import formation.factory.repository.jpa.FormationRepositoryJpa;
+import formation.factory.repository.jpa.ParticipationRepositoryJpa;
 import formation.factory.repository.jpa.PersonneRepositoryJpa;
 import formation.factory.repository.jpa.SalleRepositoryJpa;
 import formation.factory.repository.jpa.SujetRepositoryJpa;
@@ -26,6 +28,7 @@ public class FactorySingleton {
 
 	private final IFormationRepository formationRepository = new FormationRepositoryJpa();
 	private final IPersonneRepository personneRepository = new PersonneRepositoryJpa();
+	private final IParticipationRepository participationRepository = new ParticipationRepositoryJpa();
 	private final ISalleRepository salleRepository = new SalleRepositoryJpa();
 	private final ISujetRepository sujetRepository = new SujetRepositoryJpa();
 
@@ -59,6 +62,10 @@ public class FactorySingleton {
 
 	public IPersonneRepository getPersonneRepository() {
 		return personneRepository;
+	}
+
+	public IParticipationRepository getParticipationRepository() {
+		return participationRepository;
 	}
 
 	public ISalleRepository getSalleRepository() {

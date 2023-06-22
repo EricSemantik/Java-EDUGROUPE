@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,8 +19,10 @@ public class Participant extends Personne {
 	private Date dtNaissance;
 	@Column(name = "rating")
 	private int note;
-	@ManyToMany(mappedBy = "participants")
-	private List<Formation> formations = new ArrayList<>();
+//	@ManyToMany(mappedBy = "participants")
+//	private List<Formation> formations = new ArrayList<>();
+	@OneToMany(mappedBy = "participant")
+	private List<Participation> participations = new ArrayList<>();
 
 	public Participant() {
 		super();
@@ -52,12 +54,20 @@ public class Participant extends Personne {
 		this.note = note;
 	}
 
-	public List<Formation> getFormations() {
-		return formations;
+	public List<Participation> getParticipations() {
+		return participations;
 	}
 
-	public void setFormations(List<Formation> formations) {
-		this.formations = formations;
+	public void setParticipations(List<Participation> participations) {
+		this.participations = participations;
 	}
+
+//	public List<Formation> getFormations() {
+//		return formations;
+//	}
+//
+//	public void setFormations(List<Formation> formations) {
+//		this.formations = formations;
+//	}
 
 }
