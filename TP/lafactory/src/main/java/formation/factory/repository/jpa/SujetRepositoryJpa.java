@@ -149,4 +149,34 @@ public class SujetRepositoryJpa implements ISujetRepository {
 		}
 	}
 
+	@Override
+	public Sujet findByIdWithFormations(String code) {
+		Sujet sujet = null;
+		
+		EntityManager em = null;
+		try {
+			em = FactorySingleton.getInstance().getEmf().createEntityManager();
+			em.getTransaction().begin();
+
+			TypedQuery<Sujet> query = em.createQuery("select distinct s from Sujet s left join fetch s.formations where s.code = :code", Sujet.class);
+			query.setParameter("code", code);
+			
+			sujet = query.getSingleResult();
+
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			if(em.getTransaction() != null && em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
+			
+			throw new FactoryException(e);
+		} finally {
+			if(em != null) { 
+				em.close();
+			}
+		}
+		
+		return sujet;
+	}
+
 }

@@ -117,4 +117,10 @@ public class SujetRepositoryJdbc implements ISujetRepository {
 		}
 	}
 
+	@Override
+	public Sujet findByIdWithFormations(String code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
